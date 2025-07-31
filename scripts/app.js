@@ -155,27 +155,31 @@ function renderTask() {
 }
 
 // Добавляет новую задачу
+function handleAddTask() {
+  generatedId = Math.floor(Date.now() + Math.random() * 10000);
+
+  const title = createTaskTitile.value.trim();
+  const description = createTaskDescription.value.trim();
+  
+  if (!title) return; // простая валидация
+
+  const taskData = {
+    id: generatedId,
+    title: title,
+    description: description,
+  }
+
+  tasks.push(taskData);
+  createTaskElement(taskData);
+  saveTask();
+  
+  // Очищаем поля ввода
+  createTaskTitile.value = '';
+  createTaskDescription.value = '';
+}
+
 function addTask() {
-  createTaskButton.addEventListener("click", function() {
-    generatedId = Math.floor(Date.now() + Math.random() * 10000);
-
-    const title = createTaskTitile.value;
-    const description = createTaskDescription.value;
-    
-    const taskData = {
-      id: generatedId,
-      title: title,
-      description: description,
-    }
-
-    tasks.push(taskData);
-    
-    // ++newTaskCounter;
-
-    createTaskElement(taskData);
-
-    saveTask();
-  })
+  createTaskButton.addEventListener("click", handleAddTask);
 }
 
 // Удаляет существующею задачу
