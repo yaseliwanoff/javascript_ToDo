@@ -15,10 +15,12 @@ let loadTaskData;
 let generatedId;
 let newTaskCounter = parseInt(taskCounter.innerText) || 0;
 
+// отключение обновление старницы при автоматической отправки формы
 createTaskForm.addEventListener("submit", function(event) {
   event.preventDefault();
 })
 
+// Функция создания шаблона задачи для выполненных задач
 function createCompletedTaskElement(task) {
   let taskTemplateHTML = `
     <div data-id="${task.id}" id="task-${task.id}" class="border border-green-200 bg-green-50 rounded-lg p-4 mb-4 opacity-80">
@@ -62,6 +64,7 @@ function createCompletedTaskElement(task) {
   });
 }
 
+// Функция создания шаблона задачи для не выполненных задач
 function createTaskElement(task) {
   const message = document.getElementById("message");
 
